@@ -26,7 +26,7 @@ const Skills = () => {
 
       <Grid container spacing={3}>
         {skills.map((skill, index) => (
-          <Grid item xs={12} sm={6} md={4} key={skill}>
+          <Grid key={skill} size={{ xs: 12, sm: 6, md: 4 }}>
             <AnimateOnScroll delay={index * 0.1}>
               <Card
                 component={motion.div}

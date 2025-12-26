@@ -45,33 +45,17 @@ const Projects = () => {
       </Stack>
 
       {/* PROJECT GRID */}
-      <Grid
-        container
-        spacing={3}
-        component={motion.div}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={{
-          visible: {
-            transition: { staggerChildren: 0.15 },
-          },
-        }}
-      >
-        {filteredProjects.map((project) => (
-          <Grid
-            item
-            xs={12}
-            sm={6}
-            md={4}
-            key={project.id}
-            component={motion.div}
-            variants={{
-              hidden: { opacity: 0, y: 30 },
-              visible: { opacity: 1, y: 0 },
-            }}
-          >
-            <ProjectCard project={project} />
+      <Grid container spacing={3}>
+        {filteredProjects.map((project, index) => (
+          <Grid key={project.id} size={{ xs: 12, sm: 6, md: 4 }}>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <ProjectCard project={project} />
+            </motion.div>
           </Grid>
         ))}
       </Grid>
