@@ -3,7 +3,7 @@ import AnimateOnScroll from "./AnimateOnScroll";
 
 const About = () => {
   return (
-    <Container sx={{ py: 10 }}>
+    <Container sx={{ py: 10, mt: { xs: 6, md: 10 } }} id="about">
       <AnimateOnScroll>
         <Typography variant="h4" fontWeight={700} gutterBottom>
           About Me

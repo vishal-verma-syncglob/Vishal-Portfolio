@@ -6,8 +6,11 @@ export const darkTheme = createTheme({
     primary: {
       main: "#6D5DFE",
     },
+    secondary: {
+      main: "#6D5DFE",
+    },
     background: {
-      default: "#0B0B12",
+      default: "#13131A",
       paper: "#13131A",
     },
   },

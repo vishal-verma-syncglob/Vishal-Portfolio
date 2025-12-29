@@ -13,6 +13,9 @@ import AnimateOnScroll from "./AnimateOnScroll";
 const Contact = () => {
   return (
     <Container sx={{ py: 12 }} id="contact">
+      <Typography variant="h4" fontWeight={700} gutterBottom>
+        Contact Me
+      </Typography>
       <AnimateOnScroll>
         <Paper
           elevation={0}
