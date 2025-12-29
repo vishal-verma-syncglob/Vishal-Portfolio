@@ -5,9 +5,10 @@ export const darkTheme = createTheme({
     mode: "dark",
     primary: {
       main: "#6D5DFE",
+      light: "#a99cffff",
     },
     secondary: {
-      main: "#6D5DFE",
+      main: "rgba(109, 93, 254, 0.25)",
     },
     background: {
       default: "#13131A",

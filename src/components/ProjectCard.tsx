@@ -8,7 +8,7 @@ import {
   Box,
 } from "@mui/material";
 import { motion } from "framer-motion";
-import type { Project } from "../data/projects";
+import { type Project } from "../data/projects";
 
 interface Props {
   project: Project;
@@ -81,7 +81,22 @@ const ProjectCard = ({ project }: Props) => {
           {project.description}
         </Typography>
 
-        <Stack direction="row" spacing={1} flexWrap="wrap" mb={3}>
+        {project.highlights.length > 0 && (
+          <Box sx={{ mb: 2 }}>
+            {project.highlights.map((highlight, index) => (
+              <Typography
+                key={index}
+                variant="body2"
+                fontWeight={"bold"}
+                sx={{ opacity: 0.75, fontSize: 13, mb: 0.5 }}
+              >
+                • {highlight}
+              </Typography>
+            ))}
+          </Box>
+        )}
+
+        <Stack direction="row" spacing={1} flexWrap="wrap" mb={3} rowGap={1}>
           {project.tech.map((t) => (
             <Chip
               key={t}
@@ -112,6 +127,10 @@ const ProjectCard = ({ project }: Props) => {
                 size="small"
                 variant="contained"
                 sx={{ textTransform: "none" }}
+                component="a"
+                href={project.live}
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 Live
               </Button>

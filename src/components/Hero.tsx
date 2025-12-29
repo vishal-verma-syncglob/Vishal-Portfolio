@@ -5,6 +5,15 @@ import { scrollToSection } from "../utils/scrollToSection";
 import profileImage from "../assets/profile.png";
 
 const Hero = () => {
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = "/cv.pdf";
+    link.download = "Vishal_Verma_CV.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <Box
       sx={{
@@ -108,7 +117,7 @@ const Hero = () => {
               </Typography>
 
               <Typography variant="h5" sx={{ opacity: 0.85, mb: 3 }}>
-                React • React Native • Electron Developer
+                React JS • React Native • Electron Developer
               </Typography>
 
               <Typography sx={{ opacity: 0.7, mb: 4, maxWidth: 520 }}>
@@ -146,8 +155,9 @@ const Hero = () => {
                   component={motion.button}
                   whileHover={{ scale: 1.06 }}
                   whileTap={{ scale: 0.96 }}
+                  onClick={handleDownload}
                 >
-                  Download Resume
+                  Download CV
                 </Button>
               </Stack>
             </motion.div>

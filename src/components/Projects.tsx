@@ -6,7 +6,7 @@ import { projects, type ProjectCategory } from "../data/projects";
 
 const filters: (ProjectCategory | "All")[] = [
   "All",
-  "React",
+  "React JS",
   "React Native",
   "Electron",
 ];
