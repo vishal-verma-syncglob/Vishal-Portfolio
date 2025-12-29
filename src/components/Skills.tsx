@@ -1,6 +1,5 @@
 import { Card, CardContent, Container, Grid, Typography } from "@mui/material";
 import { motion } from "framer-motion";
-import AnimateOnScroll from "./AnimateOnScroll";
 
 const skills = [
   "React JS",
