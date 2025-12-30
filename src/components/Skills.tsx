@@ -6,8 +6,14 @@ const skills = [
   "React Native",
   "Electron",
   "TypeScript",
+  "JavaScript (ES6+)",
+  "HTML5 & CSS3",
   "Material UI",
-  "Redux / Context API",
+  "Bootstrap",
+  "React Hook Form",
+  "RTK Query",
+  "Integrate REST APIs",
+  "Git & GitHub",
 ];
 
 const containerVariants = {
@@ -26,7 +32,7 @@ const itemVariants = {
 
 const Skills = () => {
   return (
-    <Container sx={{ py: 10 }} id="skills">
+    <Container sx={{ pt: 10, pb: 5 }} id="skills">
       {/* TITLE */}
       <motion.div
         initial={{ opacity: 0, y: 24 }}
@@ -52,7 +58,7 @@ const Skills = () => {
       >
         <Grid container spacing={3}>
           {skills.map((skill) => (
-            <Grid key={skill} size={{ xs: 12, sm: 6, md: 4 }}>
+            <Grid key={skill} size={{ xs: 12, sm: 4, md: 3 }}>
               <motion.div variants={itemVariants}>
                 <Card
                   component={motion.div}

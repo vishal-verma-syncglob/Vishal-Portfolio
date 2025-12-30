@@ -1,45 +1,30 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Button, Container, Grid, Stack, Typography, Box } from "@mui/material";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import ProjectCard from "./ProjectCard";
 import { projects, type ProjectCategory } from "../data/projects";
 
-const filters: (ProjectCategory | "All")[] = [
-  "All",
-  "React JS",
-  "React Native",
-  "Electron",
-];
-
-const containerVariants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.12,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 28 },
-  show: { opacity: 1, y: 0 },
-};
+type Filter = "All" | ProjectCategory;
 
 const Projects = () => {
-  const [active, setActive] = useState<"All" | ProjectCategory>("All");
+  const [active, setActive] = useState<Filter>("All");
 
-  const filteredProjects =
-    active === "All" ? projects : projects.filter((p) => p.category === active);
+  /* DYNAMIC FILTER LIST */
+  const filters = useMemo<Filter[]>(() => {
+    const categories = Array.from(new Set(projects.map((p) => p.category)));
+    return ["All", ...categories];
+  }, []);
+
+  /* FILTERED PROJECTS */
+  const filteredProjects = useMemo(() => {
+    if (active === "All") return projects;
+    return projects.filter((p) => p.category === active);
+  }, [active]);
 
   return (
-    <Container sx={{ py: 10 }} id="projects">
-      {/* HEADER */}
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
+    <Box id="projects" sx={{ scrollMarginTop: 96 }}>
+      <Container sx={{ py: 5 }}>
+        {/* HEADER */}
         <Typography variant="h4" fontWeight={700} gutterBottom>
           Projects
         </Typography>
@@ -47,16 +32,9 @@ const Projects = () => {
         <Typography sx={{ opacity: 0.7, mb: 5 }}>
           Some of the work I’ve built recently
         </Typography>
-      </motion.div>
 
-      {/* FILTERS */}
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.1 }}
-      >
-        <Stack direction="row" spacing={1.5} mb={6} sx={{ flexWrap: "wrap" }}>
+        {/* FILTERS */}
+        <Stack direction="row" spacing={1.5} mb={6} flexWrap="wrap" rowGap={1}>
           {filters.map((f) => (
             <Button
               key={f}
@@ -67,40 +45,40 @@ const Projects = () => {
                 borderRadius: 20,
                 px: 2.5,
                 fontSize: 14,
-                opacity: active === f ? 1 : 0.7,
+                opacity: active === f ? 1 : 0.75,
               }}
             >
               {f}
             </Button>
           ))}
         </Stack>
-      </motion.div>
 
-      {/* PROJECT GRID */}
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-      >
+        {/* PROJECT GRID */}
         <Grid container spacing={4}>
-          {filteredProjects.map((project) => (
-            <Grid key={project.id} size={{ xs: 12, sm: 6, md: 4 }}>
-              <motion.div variants={itemVariants}>
-                <ProjectCard project={project} />
-              </motion.div>
-            </Grid>
-          ))}
+          <AnimatePresence mode="wait">
+            {filteredProjects.map((project) => (
+              <Grid size={{ xs: 12, sm: 6, md: 4 }} key={project.id}>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 20 }}
+                  transition={{ duration: 0.25 }}
+                >
+                  <ProjectCard project={project} />
+                </motion.div>
+              </Grid>
+            ))}
+          </AnimatePresence>
         </Grid>
-      </motion.div>
 
-      {/* OPTIONAL FOOT NOTE */}
-      <Box mt={8}>
-        <Typography align="center" sx={{ opacity: 0.5, fontSize: 14 }}>
-          More projects available on request
-        </Typography>
-      </Box>
-    </Container>
+        {/* FOOTER */}
+        <Box mt={8}>
+          <Typography align="center" sx={{ opacity: 0.5, fontSize: 14 }}>
+            More projects available on request
+          </Typography>
+        </Box>
+      </Container>
+    </Box>
   );
 };
 

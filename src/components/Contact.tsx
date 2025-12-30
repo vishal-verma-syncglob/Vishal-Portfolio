@@ -67,7 +67,7 @@ const Contact = () => {
 
       setToast({
         open: true,
-        message: "Message sent successfully ✅",
+        message: "Message sent successfully",
         severity: "success",
       });
 
@@ -76,7 +76,7 @@ const Contact = () => {
       console.error("EmailJS Error:", error);
       setToast({
         open: true,
-        message: "Failed to send message ❌",
+        message: "Failed to send message ",
         severity: "error",
       });
     } finally {
@@ -85,20 +85,24 @@ const Contact = () => {
   };
 
   return (
-    <Container sx={{ py: 12 }} id="contact">
+    <Container sx={{ pt: 10, pb: 6 }} id="contact">
       <Typography variant="h4" fontWeight={700} gutterBottom>
         Contact Me
       </Typography>
+
       <AnimateOnScroll>
         <Paper
           elevation={0}
-          sx={{
+          sx={(theme) => ({
             p: { xs: 4, md: 6 },
             borderRadius: 4,
-            background:
-              "linear-gradient(135deg, rgba(109,93,254,0.15), rgba(19,19,26,1))",
-            border: "1px solid rgba(255,255,255,0.08)",
-          }}
+            background: `linear-gradient(
+              135deg,
+              ${theme.palette.secondary.main},
+              ${theme.palette.background.paper}
+            )`,
+            border: `1px solid ${theme.palette.divider}`,
+          })}
         >
           <Stack
             direction={{ xs: "column", md: "row" }}
@@ -180,6 +184,7 @@ const Contact = () => {
           </Stack>
         </Paper>
       </AnimateOnScroll>
+
       <Snackbar
         open={toast.open}
         autoHideDuration={4000}
