@@ -15,3 +15,4 @@ declare module "@mui/material/styles" {
     mail?: PaletteOptions["primary"];
   }
 }
+export {};
