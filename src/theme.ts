@@ -10,18 +10,6 @@ export const darkTheme = createTheme({
     secondary: {
       main: "rgba(109, 93, 254, 0.25)",
     },
-    whatsapp: {
-      main: "#25D366",
-    },
-    linkedin: {
-      main: "#0A66C2",
-    },
-    mail: {
-      main: "#EA4335",
-    },
-    instagram: {
-      main: "#E1306C",
-    },
     background: {
       default: "#13131A",
       paper: "#13131A",
