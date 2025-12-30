@@ -39,25 +39,25 @@ const socials = [
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/vishal-verma-b681052a7/",
     icon: <LinkedInIcon />,
-    colorKey: "linkedin",
+    color: "#0A66C2",
   },
   {
     label: "Instagram",
     href: "https://www.instagram.com/vishalverma7722/",
     icon: <InstagramIcon />,
-    colorKey: "instagram",
+    color: "#E1306C",
   },
   {
     label: "WhatsApp",
     href: "https://wa.me/917726898507",
     icon: <WhatsAppIcon />,
-    colorKey: "whatsapp",
+    color: "#25D366",
   },
   {
     label: "Email",
     href: "mailto:vishuv256@gmail.com",
     icon: <EmailIcon />,
-    colorKey: "mail",
+    color: "#EA4335",
   },
 ] as const;
 
@@ -95,19 +95,20 @@ const Navbar = () => {
     label,
     href,
     icon,
-    colorKey,
+    color,
   }: (typeof socials)[number]) => (
     <Tooltip title={label}>
       <IconButton
         component="a"
         href={href}
         target="_blank"
-        sx={(theme) => ({
-          color: theme.palette.text.primary,
+        sx={{
+          color: "rgba(255,255,255,0.75)",
+          transition: "color 0.25s ease",
           "&:hover": {
-            color: (theme.palette as any)[colorKey].main,
+            color,
           },
-        })}
+        }}
       >
         {icon}
       </IconButton>
