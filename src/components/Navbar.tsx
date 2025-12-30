@@ -208,12 +208,12 @@ const Navbar = () => {
                 component="a"
                 href={item.href}
                 target="_blank"
-                sx={(theme) => ({
-                  color: theme.palette.text.primary,
+                sx={{
+                  color: "rgba(255,255,255,0.75)",
                   "&:hover": {
-                    color: (theme.palette as any)[item.colorKey].main,
+                    color: item.color,
                   },
-                })}
+                }}
               >
                 {item.icon}
               </IconButton>
