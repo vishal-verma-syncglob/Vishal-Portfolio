@@ -124,7 +124,7 @@ const Contact = () => {
               <Typography sx={{ opacity: 0.6 }}>
                 📧 vishuv256@gmail.com
                 <br />
-                🌍 Available for freelance & full-time roles
+                📞 +91 7726898507
               </Typography>
             </Box>
 
